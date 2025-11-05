@@ -48,10 +48,9 @@ app.use("/api/chat-customizations", chatCustomizationRoute);
 // Serve frontend build
 const distPath = path.join(__dirname, "../../frontend/dist");
 app.use(express.static(distPath));
-app.get("*", (_, res) => {
+app.get("/*", (_, res) => {
   res.sendFile(path.join(distPath, "index.html"));
 });
-
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: true, credentials: true } });
 chatSocket(io);
