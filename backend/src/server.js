@@ -67,7 +67,8 @@ const distPath = path.join(__dirname, "../../frontend/dist");
 app.use(express.static(distPath));
 
 // ✅ Express 5 dùng path-to-regexp v6: phải dùng /(.*) thay vì '/*'
-app.get("/(.*)", (_, res) => {
+// ✅ Dùng biểu thức regex thực sự (RegExp) cho catch-all route
+app.get(/.*/, (_, res) => {
   res.sendFile(path.join(distPath, "index.html"));
 });
 
